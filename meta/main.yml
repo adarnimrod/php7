@@ -1,15 +1,12 @@
 galaxy_info:
   author: Nimrod Adar
-  description: An example Ansible role
+  description: Install PHP5 (cli, not mod-php or fpm)
   company: Shore technologies
   license: MIT
   min_ansible_version: 2.0
   platforms:
-  - name: OpenBSD
+  - name: Debian
     versions:
-    - 5.9
-  galaxy_tags: [ ansible ]
-dependencies:
-    - src: https://www.shore.co.il/git/ansible-role-openbsd-bootstrap
-      scm: git
-      name: bootstrap
+    - jessie
+  galaxy_tags: [ php ]
+dependencies: []

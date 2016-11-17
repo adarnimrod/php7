@@ -1,7 +1,30 @@
 ---
-# tasks file for ansible-role-example
-
-- assert:
+# tasks file for ansible-role-php5
+- name: Assertions
+  assert:
     that:
-        - ansible_os_family == 'OpenBSD'
-        - ansible_distribution_release == '5.9'
+        - ansible_os_family == 'Debian'
+
+- name: APT install
+  apt:
+      name: ['php-pear', 'php5-dev', 'php5-cli']
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: Download Composer's installer
+  get_url:
+      url: https://getcomposer.org/installer
+      dest: /root/composer-install
+
+- name: Install Composer
+  command: php -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
+  args:
+      creates: /usr/local/bin/composer
+
+- name: Add Cron job for Composer self-update
+  cron:
+      special_time: weekly
+      user: root
+      name: Composer self-update
+      job: /usr/local/bin/composer self-update 2>&1 | logger
