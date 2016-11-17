@@ -8,5 +8,8 @@ galaxy_info:
   - name: Debian
     versions:
     - jessie
+  - name: OpenBSD
+    versions:
+    - 6.0
   galaxy_tags: [ php ]
 dependencies: []

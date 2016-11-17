@@ -3,14 +3,43 @@
 - name: Assertions
   assert:
     that:
-        - ansible_os_family == 'Debian'
+        - ansible_os_family in ['Debian', 'OpenBSD']
 
 - name: APT install
+  when: ansible_pkg_mgr == 'apt'
   apt:
       name: ['php-pear', 'php5-dev', 'php5-cli']
       state: present
       update_cache: yes
       cache_valid_time: 3600
+
+- name: pkg install
+  when: ansible_pkg_mgr == 'openbsd_pkg'
+  openbsd_pkg:
+      name: pear
+      state: present
+
+- name: Create php5 symlink
+  when: ansible_pkg_mgr == 'openbsd_pkg'
+  with_items: ['php', 'php5']
+  file:
+      src: /usr/local/bin/php-5.6
+      dest: '/usr/local/bin/{{ item }}'
+      owner: root
+      group: 0
+      mode: 0o0755
+      state: link
+
+- name: Allow Composer install
+  when: ansible_pkg_mgr == 'openbsd_pkg'
+  with_dict:
+      'allow_url_fopen': 'On'
+      'suhosin.executor.include.whitelist': 'phar'
+  ini_file:
+      dest: /etc/php-5.6.ini
+      section: PHP
+      option: '{{ item.key }}'
+      value: '{{ item.value }}'
 
 - name: Download Composer's installer
   get_url:
@@ -18,7 +47,7 @@
       dest: /root/composer-install
 
 - name: Install Composer
-  command: php -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
+  command: php5 -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
   args:
       creates: /usr/local/bin/composer
 
