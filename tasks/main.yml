@@ -5,6 +5,12 @@
     that:
         - ansible_os_family in ['Debian', 'OpenBSD']
 
+- name: Add PPA
+  when: ansible_distribution_release == 'xenial'
+  apt_repository:
+      repo: ppa:ondrej/php
+      update_cache: yes
+
 - name: APT install
   when: ansible_pkg_mgr == 'apt'
   apt:
