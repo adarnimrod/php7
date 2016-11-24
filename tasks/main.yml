@@ -1,5 +1,5 @@
 ---
-# tasks file for ansible-role-php5
+# tasks file for php5
 - name: Assertions
   assert:
     that:

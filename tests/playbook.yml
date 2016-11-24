@@ -1,7 +1,7 @@
 ---
-- hosts: ansible-role-php5-openbsd
+- hosts: php5-openbsd
   gather_facts: false
-  roles: [openbsd_bootstrap]
+  roles: [adarnimrod.openbsd-bootstrap]
 
 - hosts: all
-  roles: [ansible-role-php5]
+  roles: [php5]
