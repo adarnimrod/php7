@@ -1,0 +1,13 @@
+---
+- name: APT install software-properties-common (for apt-add-repository)
+  apt:
+      name: software-properties-common
+      state: present
+      update_cache: yes
+      cache_valid_time: 3600
+
+- name: Add PPA
+  apt_repository:
+      repo: ppa:ondrej/php
+      update_cache: yes
+

@@ -5,16 +5,13 @@
     that:
         - ansible_os_family in ['Debian', 'OpenBSD']
 
-- name: Add PPA
+- include: ppa.yml
   when: ansible_distribution_release == 'xenial'
-  apt_repository:
-      repo: ppa:ondrej/php
-      update_cache: yes
 
 - name: APT install
   when: ansible_pkg_mgr == 'apt'
   apt:
-      name: ['php-pear', 'php5-dev', 'php5-cli']
+      name: ['php-pear', 'php5-dev', 'php5-cli', 'cron']
       state: present
       update_cache: yes
       cache_valid_time: 3600
