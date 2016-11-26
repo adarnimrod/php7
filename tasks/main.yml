@@ -5,9 +5,6 @@
     that:
         - ansible_os_family in ['Debian', 'OpenBSD']
 
-- include: ppa.yml
-  when: ansible_distribution_release == 'xenial'
-
 - name: APT install
   when: ansible_pkg_mgr == 'apt'
   apt:

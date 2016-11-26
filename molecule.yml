@@ -30,11 +30,6 @@ vagrant:
 
 docker:
   containers:
-  - name: php5-xenial
-    image: ubuntu
-    image_version: xenial
-    environment:
-        DEBIAN_FRONTEND: noninteractive
   - name: php5-trusty
     image: ubuntu
     image_version: trusty
