@@ -13,3 +13,11 @@ def test_composer(Command):
 
 def test_pear(Command):
     assert Command('pear version').stdout.startswith('PEAR Version')
+
+
+def test_php_ini(Command):
+    command = Command('php5 --info')
+    assert command.rc == 0
+    assert 'PHP Version => 5' in command.stdout
+    assert 'syntax error' not in command.stdout
+    assert 'syntax error' not in command.stderr
