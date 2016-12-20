@@ -4,7 +4,7 @@ PHP5
 .. image:: https://travis-ci.org/adarnimrod/php5.svg?branch=master
     :target: https://travis-ci.org/adarnimrod/php5
 
-Install PHP5 (cli, not mod-php or fpm).
+Install PHP5 (cli, not mod-php nor fpm).
 
 Requirements
 ------------
