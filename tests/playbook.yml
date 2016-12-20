@@ -1,7 +1,13 @@
 ---
 - hosts: php5-openbsd
   gather_facts: false
-  roles: [adarnimrod.openbsd-bootstrap]
+  roles: [openbsd-bootstrap]
+
+- hosts: php5-xenial
+  gather_facts: false
+  roles: [debian-bootstrap]
 
 - hosts: all
-  roles: [php5]
+  strategy: free
+  roles:
+    - role: php5
