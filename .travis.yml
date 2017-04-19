@@ -10,16 +10,13 @@ env:
     matrix:
         - TOXENV=pre-commit
         - TOXENV=openbsd60
-        - TOXENV=xenial
         - TOXENV=trusty
         - TOXENV=precise
-        - &stretch TOXENV=stretch
         - &jessie TOXENV=jessie
         - TOXENV=wheezy
 matrix:
     fast_finish: True
     allow_failures:
-        - env: *stretch
         - env: *jessie
 cache:
   - pip

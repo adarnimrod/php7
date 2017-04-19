@@ -22,10 +22,14 @@ vagrant:
   platforms:
   - name: openbsd60
     box: fnichol/openbsd-6.0-i386
+  - name: xenial
+    box: ubuntu/xenial32
   - name: trusty
     box: ubuntu/trusty32
   - name: precise
     box: hashicorp/precise32
+  - name: stretch
+    box: remram/debian-9-i386
   - name: jessie
     box: deb/jessie-i386
   - name: wheezy
