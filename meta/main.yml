@@ -1,20 +1,18 @@
 galaxy_info:
   author: Nimrod Adar
-  description: Install PHP5 (cli, not mod-php nor fpm)
+  description: Install PHP7 (cli, not mod-php nor fpm)
   company: Shore technologies
   license: MIT
   min_ansible_version: 2.3
   platforms:
   - name: Debian
     versions:
-    - jessie
-    - wheezy
+    - stretch
   - name: OpenBSD
     versions:
     - 6.0
   - name: Ubuntu
     versions:
-    - trusty
-    - precise
+    - xenial
   galaxy_tags: [ php ]
 dependencies: []

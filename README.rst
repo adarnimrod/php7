@@ -1,10 +1,10 @@
-PHP5
+PHP7
 ####
 
-.. image:: https://travis-ci.org/adarnimrod/php5.svg?branch=master
-    :target: https://travis-ci.org/adarnimrod/php5
+.. image:: https://travis-ci.org/adarnimrod/php7.svg?branch=master
+    :target: https://travis-ci.org/adarnimrod/php7
 
-Install PHP5 (cli, not mod-php nor fpm).
+Install PHP7 (cli, not mod-php nor fpm).
 
 Requirements
 ------------

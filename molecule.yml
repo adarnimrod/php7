@@ -35,7 +35,7 @@ vagrant:
   - name: wheezy
     box: bmorg/debian-wheezy-i386
   instances:
-  - name: php5
+  - name: php7
     options:
         append_platform_to_hostname: yes
   raw_config_args:

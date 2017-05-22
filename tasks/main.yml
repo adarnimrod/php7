@@ -1,5 +1,5 @@
 ---
-# tasks file for php5
+# tasks file for php7
 - name: Assertions
   assert:
     that:
@@ -8,7 +8,7 @@
 - name: APT install
   when: ansible_pkg_mgr == 'apt'
   apt:
-      name: ['php-pear', 'php5-dev', 'php5-cli', 'cron']
+      name: ['php-pear', 'php7.0-dev', 'php7.0-cli', 'cron']
       state: present
       update_cache: yes
       cache_valid_time: 3600
@@ -19,11 +19,11 @@
       name: pear
       state: present
 
-- name: Create php5 symlink
+- name: Create php7 symlink
   when: ansible_pkg_mgr == 'openbsd_pkg'
-  with_items: ['php', 'php5']
+  with_items: ['php', 'php7']
   file:
-      src: /usr/local/bin/php-5.6
+      src: /usr/local/bin/php-7.0
       dest: '/usr/local/bin/{{ item }}'
       owner: root
       group: 0
@@ -36,7 +36,7 @@
       'allow_url_fopen': 'On'
       'suhosin.executor.include.whitelist': 'phar'
   ini_file:
-      dest: /etc/php-5.6.ini
+      dest: /etc/php-7.0.ini
       section: PHP
       option: '{{ item.key }}'
       value: '{{ item.value }}'
@@ -47,7 +47,7 @@
       dest: /root/composer-install
 
 - name: Install Composer
-  command: php5 -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
+  command: php7 -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
   args:
       creates: /usr/local/bin/composer
 
