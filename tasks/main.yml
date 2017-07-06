@@ -21,7 +21,7 @@
 
 - name: Create php7 symlink
   when: ansible_pkg_mgr == 'openbsd_pkg'
-  with_items: ['php', 'php7']
+  with_items: ['php', 'php7', 'php7.0']
   file:
       src: /usr/local/bin/php-7.0
       dest: '/usr/local/bin/{{ item }}'
@@ -47,7 +47,7 @@
       dest: /root/composer-install
 
 - name: Install Composer
-  command: php7 -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
+  command: php7.0 -f /root/composer-install -- --install-dir=/usr/local/bin --filename=composer
   args:
       creates: /usr/local/bin/composer
 
