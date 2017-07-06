@@ -57,3 +57,20 @@
       user: root
       name: Composer self-update
       job: /usr/local/bin/composer self-update 2>&1 | logger
+
+- name: Check for PEAR installation
+  changed_when: False
+  ignore_errors: True
+  command: which pear
+  register: php7_which_pear
+
+- include: pear.yml
+  when: php7_which_pear|failed
+
+- name: Configure include_path
+  when: ansible_pkg_mgr == 'openbsd_pkg'
+  ini_file:
+      dest: /etc/php-7.0.ini
+      section: PHP
+      option: include_path
+      value: '".:/pear/lib:/var/www/pear/lib:/usr/local/share/php-7.0"'

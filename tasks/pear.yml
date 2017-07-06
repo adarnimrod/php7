@@ -1,0 +1,10 @@
+---
+- name: Download PEAR installer
+  get_url:
+      url: https://pear.php.net/install-pear-nozlib.phar
+      dest: /root/install-pear-nozlib.phar
+
+- name: Install PEAR
+  command: php /root/install-pear-nozlib.phar
+  args:
+      creates: /usr/local/bin/pear
